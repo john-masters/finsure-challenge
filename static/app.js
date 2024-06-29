@@ -5,6 +5,9 @@ app.controller("controller", [
     "$http",
     function ($scope, $http) {
         $scope.error = "";
+        $scope.propertyName = "attributes.code";
+        $scope.reverse = false;
+
         $scope.getLenders = function () {
             $scope.error = "";
             $http
@@ -15,6 +18,11 @@ app.controller("controller", [
                 .catch(function (error) {
                     $scope.error = `${error.status} - ${error.statusText}`;
                 });
+        };
+        $scope.sortBy = function (propertyName) {
+            $scope.propertyName = propertyName;
+            $scope.reverse =
+                $scope.propertyName === propertyName ? !$scope.reverse : false;
         };
         $scope.getLenders();
     },
