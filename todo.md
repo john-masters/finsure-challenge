@@ -1,6 +1,6 @@
 # TODO
 
-- [ ] Add basic web server
+- [x] Add basic web server
   - serve index.html
   - return lenders.json
 - [ ] Make readme.md
