@@ -26,43 +26,49 @@
       <h1 class="text-3xl text-[#1fb394] p-4">Lender Maintenance</h1>
       <hr>
       <div class="p-4">
-        <table class="w-full table-auto text-sm border-separate border-spacing-2">
+        <table class="w-full table-auto text-sm">
           <thead>
-            <tr>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th colspan="3">Commission</th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-            </tr>
             <tr>
               <th>Bank Code</th>
               <th>Display Name</th>
               <th>Type</th>
-              <th>Upfront</th>
-              <th>Trail High</th>
-              <th>Trail Low</th>
+              <th colspan="3">Commission</th>
               <th>Balance Multiplier</th>
               <th>Active</th>
               <th>Hide</th>
               <th>Edit</th>
             </tr>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th>Upfront</th>
+              <th>Trail High</th>
+              <th>Trail Low</th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="lender in lenders">
-              <td>{{ lender.attributes.code }}</td>
-              <td>{{ lender.attributes.name }}</td>
-              <td>{{ lender.attributes.type }}</td>
-              <td>{{ lender.attributes.upfont_commission }}</td>
-              <td>{{ lender.attributes.high_trail_commission }}</td>
-              <td>{{ lender.attributes.low_trail_commission }}</td>
-              <td>{{ lender.attributes.balance_multiplier }}</td>
-              <td>{{ lender.attributes.is_active }}</td>
-              <td>{{ lender.attributes.is_hidden }}</td>
-              <td>Edit</td>
+            <tr ng-repeat="lender in lenders" ng-class="{'bg-[#f2f3f3]': $even}" class="border-y border-[#e8eaed]">
+              <td class="p-2">{{ lender.attributes.code }}</td>
+              <td class="p-2">{{ lender.attributes.name }}</td>
+              <td class="p-2">{{ lender.attributes.type }}</td>
+              <td class="p-2">{{ lender.attributes.upfont_commission }}</td>
+              <td class="p-2">{{ lender.attributes.high_trail_commission }}</td>
+              <td class="p-2">{{ lender.attributes.low_trail_commission }}</td>
+              <td class="p-2">{{ lender.attributes.balance_multiplier }}</td>
+              <td class="p-2">
+                <input type="checkbox" ng-model="lender.attributes.is_active" ng-true-value="true"
+                  ng-false-value="false" disabled>
+              </td>
+              <td class="p-2">
+                <input type="checkbox" ng-model="lender.attributes.is_hidden" ng-true-value="true"
+                  ng-false-value="false" disabled>
+              </td>
+              <td class="p-2">Edit</td>
             </tr>
           </tbody>
         </table>
