@@ -76,13 +76,27 @@
           </thead>
           <tbody>
             <tr ng-repeat="lender in lenders" ng-class="{'bg-[#f2f3f3]': $even}" class="border-y border-[#e8eaed]">
-              <td class="p-2">{{ lender.attributes.code }}</td>
-              <td class="p-2">{{ lender.attributes.name }}</td>
-              <td class="p-2">{{ lender.attributes.type }}</td>
-              <td class="p-2">{{ lender.attributes.upfont_commission }}</td>
-              <td class="p-2">{{ lender.attributes.high_trail_commission }}</td>
-              <td class="p-2">{{ lender.attributes.low_trail_commission }}</td>
-              <td class="p-2">{{ lender.attributes.balance_multiplier }}</td>
+              <td class="p-2">
+                <span class="font-bold">{{ lender.attributes.code }}</span>
+              </td>
+              <td class="p-2">
+                <span>{{ lender.attributes.name }}</span>
+              </td>
+              <td class="p-2">
+                <span>{{ lender.attributes.type }}</span>
+              </td>
+              <td class="p-2">
+                <span>{{ lender.attributes.upfont_commission }}%</span>
+              </td>
+              <td class="p-2">
+                <span>{{ lender.attributes.high_trail_commission }}%</span>
+              </td>
+              <td class="p-2">
+                <span>{{ lender.attributes.low_trail_commission }}%</span>
+              </td>
+              <td class="p-2">
+                <span>{{ lender.attributes.balance_multiplier }}</span>
+              </td>
               <td class="p-2">
                 <input type="checkbox" ng-model="lender.attributes.is_active" ng-true-value="true"
                   ng-false-value="false" disabled>
@@ -91,7 +105,9 @@
                 <input type="checkbox" ng-model="lender.attributes.is_hidden" ng-true-value="true"
                   ng-false-value="false" disabled>
               </td>
-              <td class="p-2">Edit</td>
+              <td class="p-2">
+                <button>✎ Edit</button>
+              </td>
             </tr>
           </tbody>
         </table>
