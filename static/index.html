@@ -25,8 +25,14 @@
     <section class="max-w-5xl mx-auto border flex-1 rounded-md shadow-md bg-white">
       <h1 class="text-3xl text-[#1fb394] p-4">Lender Maintenance</h1>
       <hr>
-      <div class="p-4">
-        <table class="w-full table-auto text-sm">
+      <div class="p-4 flex items-center justify-center">
+        <div class="flex gap-2" ng-show="!lenders">
+          <span>Please wait...</span>
+          <div class="w-4 aspect-square animate-spin">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="1em" font-size="90">🌀</text></svg>
+          </div>
+        </div>
+        <table class="w-full table-auto text-sm" ng-hide="!lenders">
           <thead class="sticky bg-white top-0 shadow-sm">
             <tr>
               <th class="p-2">
