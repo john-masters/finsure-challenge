@@ -28,6 +28,10 @@ app.controller("controller", [
         $scope.setEditable = function (id) {
             $scope.editingRow = id;
         };
+        $scope.saveEdits = function (lender) {
+            $scope.editingRow = "";
+            console.log("updated lender: ", lender);
+        };
         $scope.getLenders();
     },
 ]);

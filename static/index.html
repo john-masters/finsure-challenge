@@ -95,7 +95,7 @@
                   </div>
                 </button>
               </th>
-              <th class="p-2"><button>Edit</button></th>
+              <th class="p-2">Edit</th>
             </tr>
             <tr>
               <th></th>
@@ -169,8 +169,7 @@
                   <span>✎</span>
                   <span>Edit</span>
                 </button>
-                <button class="flex items-center gap-1" ng-click="setEditable(lender.id)"
-                  ng-hide="editingRow !== lender.id">
+                <button class="flex items-center gap-1" ng-click="saveEdits(lender)" ng-hide="editingRow !== lender.id">
                   <span>✎</span>
                   <span>Save</span>
                 </button>
