@@ -47,27 +47,29 @@
           <thead class="sticky bg-white top-0 shadow-sm">
             <tr>
               <th class="p-2">
-                <button>Bank Code</button>
+                <button ng-click="order = 'attributes.code'">Bank Code</button>
+              </th>
+              <th class=" p-2">
+                <button ng-click="order = 'attributes.name'">Display Name</button>
               </th>
               <th class="p-2">
-                <button>Display Name</button>
-              </th>
-              <th class="p-2">
-                <button>Type</button>
+                <button ng-click="order = 'attributes.type'">Type</button>
               </th class="p-2">
               <th class="p-2" colspan="3">Commission</th>
-              <th class="p-2">Balance Multiplier</th>
-              <th class="p-2">Active</th>
-              <th class="p-2">Hide</th>
-              <th class="p-2">Edit</th>
+              <th class="p-2">
+                <button ng-click="order = 'attributes.balance_multiplier'">Balance Multiplier</button>
+              </th>
+              <th class="p-2"><button ng-click="order = 'attributes.is_active'">Active</button></th>
+              <th class="p-2"><button ng-click="order = 'attributes.is_hidden'">Hide</button></th>
+              <th class="p-2"><button>Edit</button></th>
             </tr>
             <tr>
               <th></th>
               <th></th>
               <th></th>
-              <th class="p-2">Upfront</th>
-              <th class="p-2">Trail High</th>
-              <th class="p-2">Trail Low</th>
+              <th class="p-2"><button ng-click="order = 'attributes.upfont_commission'">Upfront</button></th>
+              <th class="p-2"><button ng-click="order = 'attributes.high_trail_commission'">Trail High</button></th>
+              <th class="p-2"><button ng-click="order = 'attributes.low_trail_commission'">Trail Low</button></th>
               <th></th>
               <th></th>
               <th></th>
@@ -75,7 +77,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="lender in lenders" ng-class="{'bg-[#f2f3f3]': $even}" class="border-y border-[#e8eaed]">
+            <tr ng-repeat="lender in lenders | orderBy: order" ng-class="{'bg-[#f2f3f3]': $even}"
+              class="border-y border-[#e8eaed]">
               <td class="p-2">
                 <span class="font-bold">{{ lender.attributes.code }}</span>
               </td>

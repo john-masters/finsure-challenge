@@ -13,8 +13,6 @@ app.controller("controller", [
                     $scope.lenders = data.data.data;
                 })
                 .catch(function (error) {
-                    console.log(error);
-                    console.log(`ERR: ${error.status} - ${error.statusText}`);
                     $scope.error = `${error.status} - ${error.statusText}`;
                 });
         };
