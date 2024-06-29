@@ -3,7 +3,7 @@
 - [x] Add basic web server
   - serve index.html
   - return lenders.json
-- [ ] Make readme.md
+- [x] Make readme.md
 - [ ] Make lenders page
 - [ ] Add loading spinner
 - [x] Add ui to display lenders
