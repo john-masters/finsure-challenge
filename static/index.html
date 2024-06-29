@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♾️</text></svg>" />
+  <script src="static/app.js"></script>
   <title>Infynity CRM | Lender Products</title>
 </head>
 
-<body class="min-h-dvh flex flex-col">
+<body class="min-h-dvh flex flex-col" ng-controller="controller">
   <header class="w-full bg-gradient-to-r from-[#156078] to-[#01a49c] shadow-md">
     <nav class="max-w-5xl px-5 mx-auto h-10 flex items-center">
       <div class="flex gap-4 text-white text-2xl leading-none">

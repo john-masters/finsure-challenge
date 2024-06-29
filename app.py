@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.get("/")
 def index():
-    return send_file("index.html")
+    return send_file("static/index.html")
 
 
 @app.get("/lenders")
