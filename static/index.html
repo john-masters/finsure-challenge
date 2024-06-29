@@ -26,13 +26,24 @@
       <h1 class="text-3xl text-[#1fb394] p-4">Lender Maintenance</h1>
       <hr>
       <div class="p-4 flex items-center justify-center">
-        <div class="flex gap-2" ng-show="!lenders">
+        <div class="flex gap-2" ng-show="!lenders && !error">
           <span>Please wait...</span>
           <div class="w-4 aspect-square animate-spin">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="1em" font-size="90">🌀</text></svg>
           </div>
         </div>
-        <table class="w-full table-auto text-sm" ng-hide="!lenders">
+        <div class="flex flex-col gap-2 p-4 bg-red-300" ng-show="error">
+          <p>
+            <span class="font-bold">Error:</span>
+            <span>{{ error }}</span>
+          </p>
+          <button class="border rounded-md py-2 px-4 bg-white" ng-click="getLenders()">
+            <span>
+              Try again
+            </span>
+          </button>
+        </div>
+        <table class="w-full table-auto text-sm" ng-hide="!lenders || error">
           <thead class="sticky bg-white top-0 shadow-sm">
             <tr>
               <th class="p-2">
