@@ -51,7 +51,20 @@
               <th>Edit</th>
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody>
+            <tr ng-repeat="lender in lenders">
+              <td>{{ lender.attributes.code }}</td>
+              <td>{{ lender.attributes.name }}</td>
+              <td>{{ lender.attributes.type }}</td>
+              <td>{{ lender.attributes.upfont_commission }}</td>
+              <td>{{ lender.attributes.high_trail_commission }}</td>
+              <td>{{ lender.attributes.low_trail_commission }}</td>
+              <td>{{ lender.attributes.balance_multiplier }}</td>
+              <td>{{ lender.attributes.is_active }}</td>
+              <td>{{ lender.attributes.is_hidden }}</td>
+              <td>Edit</td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </section>

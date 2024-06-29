@@ -5,7 +5,7 @@ app.controller("controller", [
     "$http",
     function ($scope, $http) {
         $http.get("/lenders").then(function (data) {
-            $scope.lenders = data.data;
+            $scope.lenders = data.data.data;
         });
     },
 ]);
