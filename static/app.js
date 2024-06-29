@@ -7,6 +7,7 @@ app.controller("controller", [
         $scope.error = "";
         $scope.propertyName = "attributes.code";
         $scope.reverse = false;
+        $scope.editingRow = "";
 
         $scope.getLenders = function () {
             $scope.error = "";
@@ -23,6 +24,9 @@ app.controller("controller", [
             $scope.propertyName = propertyName;
             $scope.reverse =
                 $scope.propertyName === propertyName ? !$scope.reverse : false;
+        };
+        $scope.setEditable = function (id) {
+            $scope.editingRow = id;
         };
         $scope.getLenders();
     },

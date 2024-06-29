@@ -157,14 +157,23 @@
               </td>
               <td class="p-2">
                 <input type="checkbox" ng-model="lender.attributes.is_active" ng-true-value="true"
-                  ng-false-value="false" disabled>
+                  ng-false-value="false" ng-disabled="editingRow !== lender.id">
               </td>
               <td class="p-2">
                 <input type="checkbox" ng-model="lender.attributes.is_hidden" ng-true-value="true"
-                  ng-false-value="false" disabled>
+                  ng-false-value="false" ng-disabled="editingRow !== lender.id">
               </td>
               <td class="p-2">
-                <button>✎ Edit</button>
+                <button class="flex items-center gap-1" ng-click="setEditable(lender.id)"
+                  ng-show="editingRow !== lender.id">
+                  <span>✎</span>
+                  <span>Edit</span>
+                </button>
+                <button class="flex items-center gap-1" ng-click="setEditable(lender.id)"
+                  ng-hide="editingRow !== lender.id">
+                  <span>✎</span>
+                  <span>Save</span>
+                </button>
               </td>
             </tr>
           </tbody>
