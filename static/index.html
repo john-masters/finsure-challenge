@@ -1,186 +1,271 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="app">
+<html
+  lang="en"
+  ng-app="app"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♾️</text></svg>"
+    />
+    <script src="static/app.js"></script>
+    <title>Infynity CRM | Lender Products</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♾️</text></svg>" />
-  <script src="static/app.js"></script>
-  <title>Infynity CRM | Lender Products</title>
-</head>
-
-<body class="min-h-dvh flex flex-col" ng-controller="controller">
-  <header class="w-full bg-gradient-to-r from-[#156078] to-[#01a49c] shadow-md">
-    <nav class="max-w-5xl px-5 mx-auto h-10 flex items-center">
-      <div class="flex gap-4 text-white text-2xl leading-none">
-        <span>∞</span>
-        <span>INFYNITY</span>
-      </div>
-    </nav>
-  </header>
-  <main class="flex-1 p-4 flex bg-gradient-to-r from-[#e9edf3] to-[#e6ebf1]">
-    <section class="max-w-5xl mx-auto border flex-1 rounded-md shadow-md bg-white">
-      <h1 class="text-3xl text-[#1fb394] p-4">Lender Maintenance</h1>
-      <hr>
-      <div class="p-4 flex items-center justify-center">
-        <div class="flex gap-2 items-center" ng-show="!lenders && !error">
-          <span>Please wait...</span>
-          <div class="w-4 aspect-square animate-spin">
-            <img class="w-full" src="static/spinner.svg" />
+  <body
+    class="min-h-dvh flex flex-col"
+    ng-controller="controller"
+  >
+    <header
+      class="w-full bg-gradient-to-r from-[#156078] to-[#01a49c] shadow-md"
+    >
+      <nav class="max-w-5xl px-5 mx-auto h-10 flex items-center">
+        <div class="flex gap-4 text-white text-2xl leading-none">
+          <span>∞</span>
+          <span>INFYNITY</span>
+        </div>
+      </nav>
+    </header>
+    <main class="flex-1 p-4 flex bg-gradient-to-r from-[#e9edf3] to-[#e6ebf1]">
+      <section
+        class="max-w-5xl mx-auto border flex-1 rounded-md shadow-md bg-white"
+      >
+        <h1 class="text-3xl text-[#1fb394] p-4">Lender Maintenance</h1>
+        <hr />
+        <div class="p-4 flex items-center justify-center">
+          <div
+            class="flex gap-2 items-center"
+            ng-show="!lenders && !error"
+          >
+            <span>Please wait...</span>
+            <div class="w-4 aspect-square animate-spin">
+              <img
+                class="w-full"
+                src="static/spinner.svg"
+              />
+            </div>
           </div>
+          <div
+            class="flex flex-col gap-2 p-4 bg-red-300"
+            ng-show="error"
+          >
+            <p>
+              <span class="font-bold">Error:</span>
+              <span>{{ error }}</span>
+            </p>
+            <button
+              class="border rounded-md py-2 px-4 bg-white"
+              ng-click="getLenders()"
+            >
+              <span> Try again </span>
+            </button>
+          </div>
+          <table
+            class="w-full table-auto text-sm"
+            ng-hide="!lenders || error"
+          >
+            <thead class="sticky bg-white top-0 shadow-sm">
+              <tr>
+                <th class="p-2">
+                  <button
+                    class="flex items-center gap-1"
+                    ng-click="sortBy('attributes.code')"
+                  >
+                    <span>Bank Code</span>
+                    <div ng-show="propertyName === 'attributes.code'">
+                      <span>{{ reverse ? "⏷" : "⏶"}}</span>
+                    </div>
+                  </button>
+                </th>
+                <th class="p-2">
+                  <button
+                    class="flex items-center gap-1"
+                    ng-click="sortBy('attributes.name')"
+                  >
+                    <span>Display Name</span>
+                    <div ng-show="propertyName === 'attributes.name'">
+                      <span>{{ reverse ? "⏷" : "⏶"}}</span>
+                    </div>
+                  </button>
+                </th>
+                <th class="p-2">
+                  <button
+                    class="flex items-center gap-1"
+                    ng-click="sortBy('attributes.type')"
+                  >
+                    <span>Type</span>
+                    <div ng-show="propertyName === 'attributes.type'">
+                      <span>{{ reverse ? "⏷" : "⏶"}}</span>
+                    </div>
+                  </button>
+                </th>
+                <th
+                  class="p-2"
+                  colspan="3"
+                >
+                  Commission
+                </th>
+                <th class="p-2">
+                  <button
+                    class="flex items-center gap-1"
+                    ng-click="sortBy('attributes.balance_multiplier')"
+                  >
+                    <span>Balance Multiplier</span>
+                    <div
+                      ng-show="propertyName === 'attributes.balance_multiplier'"
+                    >
+                      <span>{{ reverse ? "⏷" : "⏶"}}</span>
+                    </div>
+                  </button>
+                </th>
+                <th class="p-2">
+                  <button
+                    class="flex items-center gap-1"
+                    ng-click="sortBy('attributes.is_active')"
+                  >
+                    <span>Active</span>
+                    <div ng-show="propertyName === 'attributes.is_active'">
+                      <span>{{ reverse ? "⏷" : "⏶"}}</span>
+                    </div>
+                  </button>
+                </th>
+                <th class="p-2">
+                  <button
+                    class="flex items-center gap-1"
+                    ng-click="sortBy('attributes.is_hidden')"
+                  >
+                    <span>Hide</span>
+                    <div ng-show="propertyName === 'attributes.is_hidden'">
+                      <span>{{ reverse ? "⏷" : "⏶"}}</span>
+                    </div>
+                  </button>
+                </th>
+                <th class="p-2">Edit</th>
+              </tr>
+              <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th class="p-2">
+                  <button
+                    class="flex items-center gap-1"
+                    ng-click="sortBy('attributes.upfont_commission')"
+                  >
+                    <span>Upfront</span>
+                    <div
+                      ng-show="propertyName === 'attributes.upfont_commission'"
+                    >
+                      <span>{{ reverse ? "⏷" : "⏶"}}</span>
+                    </div>
+                  </button>
+                </th>
+                <th class="p-2">
+                  <button
+                    class="flex items-center gap-1"
+                    ng-click="sortBy('attributes.high_trail_commission')"
+                  >
+                    <span>Trail High</span>
+                    <div
+                      ng-show="propertyName === 'attributes.high_trail_commission'"
+                    >
+                      <span>{{ reverse ? "⏷" : "⏶"}}</span>
+                    </div>
+                  </button>
+                </th>
+                <th class="p-2">
+                  <button
+                    class="flex items-center gap-1"
+                    ng-click="sortBy('attributes.low_trail_commission')"
+                  >
+                    <span>Trail Low</span>
+                    <div
+                      ng-show="propertyName === 'attributes.low_trail_commission'"
+                    >
+                      <span>{{ reverse ? "⏷" : "⏶"}}</span>
+                    </div>
+                  </button>
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                ng-repeat="lender in lenders | orderBy:propertyName:reverse"
+                ng-class="{'bg-[#f2f3f3]': $even}"
+                class="border-y border-[#e8eaed]"
+              >
+                <td class="p-2">
+                  <span class="font-bold">{{ lender.attributes.code }}</span>
+                </td>
+                <td class="p-2">
+                  <span>{{ lender.attributes.name }}</span>
+                </td>
+                <td class="p-2">
+                  <span>{{ lender.attributes.type }}</span>
+                </td>
+                <td class="p-2">
+                  <span>{{ lender.attributes.upfont_commission }}%</span>
+                </td>
+                <td class="p-2">
+                  <span>{{ lender.attributes.high_trail_commission }}%</span>
+                </td>
+                <td class="p-2">
+                  <span>{{ lender.attributes.low_trail_commission }}%</span>
+                </td>
+                <td class="p-2">
+                  <span>{{ lender.attributes.balance_multiplier }}</span>
+                </td>
+                <td class="p-2">
+                  <input
+                    type="checkbox"
+                    ng-model="lender.attributes.is_active"
+                    ng-true-value="true"
+                    ng-false-value="false"
+                    ng-disabled="editingRow !== lender.id"
+                  />
+                </td>
+                <td class="p-2">
+                  <input
+                    type="checkbox"
+                    ng-model="lender.attributes.is_hidden"
+                    ng-true-value="true"
+                    ng-false-value="false"
+                    ng-disabled="editingRow !== lender.id"
+                  />
+                </td>
+                <td class="p-2">
+                  <button
+                    class="flex items-center gap-1"
+                    ng-click="setEditable(lender.id)"
+                    ng-show="editingRow !== lender.id"
+                  >
+                    <span>✎</span>
+                    <span>Edit</span>
+                  </button>
+                  <button
+                    class="flex items-center gap-1"
+                    ng-click="saveEdits(lender)"
+                    ng-hide="editingRow !== lender.id"
+                  >
+                    <span>✎</span>
+                    <span>Save</span>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="flex flex-col gap-2 p-4 bg-red-300" ng-show="error">
-          <p>
-            <span class="font-bold">Error:</span>
-            <span>{{ error }}</span>
-          </p>
-          <button class="border rounded-md py-2 px-4 bg-white" ng-click="getLenders()">
-            <span>
-              Try again
-            </span>
-          </button>
-        </div>
-        <table class="w-full table-auto text-sm" ng-hide="!lenders || error">
-          <thead class="sticky bg-white top-0 shadow-sm">
-            <tr>
-              <th class="p-2">
-                <button class="flex items-center gap-1" ng-click="sortBy('attributes.code')">
-                  <span>Bank Code</span>
-                  <div ng-show="propertyName === 'attributes.code'">
-                    <span>{{ reverse ? "⏷" : "⏶"}}</span>
-                  </div>
-                </button>
-              </th>
-              <th class=" p-2">
-                <button class="flex items-center gap-1" ng-click="sortBy('attributes.name')">
-                  <span>Display Name</span>
-                  <div ng-show="propertyName === 'attributes.name'">
-                    <span>{{ reverse ? "⏷" : "⏶"}}</span>
-                  </div>
-                </button>
-              </th>
-              <th class="p-2">
-                <button class="flex items-center gap-1" ng-click="sortBy('attributes.type')">
-                  <span>Type</span>
-                  <div ng-show="propertyName === 'attributes.type'">
-                    <span>{{ reverse ? "⏷" : "⏶"}}</span>
-                  </div>
-                </button>
-              </th class="p-2">
-              <th class="p-2" colspan="3">Commission</th>
-              <th class="p-2">
-                <button class="flex items-center gap-1" ng-click="sortBy('attributes.balance_multiplier')">
-                  <span>Balance Multiplier</span>
-                  <div ng-show="propertyName === 'attributes.balance_multiplier'">
-                    <span>{{ reverse ? "⏷" : "⏶"}}</span>
-                  </div>
-                </button>
-              </th>
-              <th class="p-2">
-                <button class="flex items-center gap-1" ng-click="sortBy('attributes.is_active')">
-                  <span>Active</span>
-                  <div ng-show="propertyName === 'attributes.is_active'">
-                    <span>{{ reverse ? "⏷" : "⏶"}}</span>
-                  </div>
-                </button>
-              </th>
-              <th class="p-2">
-                <button class="flex items-center gap-1" ng-click="sortBy('attributes.is_hidden')">
-                  <span>Hide</span>
-                  <div ng-show="propertyName === 'attributes.is_hidden'">
-                    <span>{{ reverse ? "⏷" : "⏶"}}</span>
-                  </div>
-                </button>
-              </th>
-              <th class="p-2">Edit</th>
-            </tr>
-            <tr>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th class="p-2">
-                <button class="flex items-center gap-1" ng-click="sortBy('attributes.upfont_commission')">
-                  <span>Upfront</span>
-                  <div ng-show="propertyName === 'attributes.upfont_commission'">
-                    <span>{{ reverse ? "⏷" : "⏶"}}</span>
-                  </div>
-                </button>
-              </th>
-              <th class="p-2">
-                <button class="flex items-center gap-1" ng-click="sortBy('attributes.high_trail_commission')">
-                  <span>Trail High</span>
-                  <div ng-show="propertyName === 'attributes.high_trail_commission'">
-                    <span>{{ reverse ? "⏷" : "⏶"}}</span>
-                  </div>
-                </button>
-              </th>
-              <th class="p-2">
-                <button class="flex items-center gap-1" ng-click="sortBy('attributes.low_trail_commission')">
-                  <span>Trail Low</span>
-                  <div ng-show="propertyName === 'attributes.low_trail_commission'">
-                    <span>{{ reverse ? "⏷" : "⏶"}}</span>
-                  </div>
-                </button>
-              </th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="lender in lenders | orderBy:propertyName:reverse" ng-class="{'bg-[#f2f3f3]': $even}"
-              class="border-y border-[#e8eaed]">
-              <td class="p-2">
-                <span class="font-bold">{{ lender.attributes.code }}</span>
-              </td>
-              <td class="p-2">
-                <span>{{ lender.attributes.name }}</span>
-              </td>
-              <td class="p-2">
-                <span>{{ lender.attributes.type }}</span>
-              </td>
-              <td class="p-2">
-                <span>{{ lender.attributes.upfont_commission }}%</span>
-              </td>
-              <td class="p-2">
-                <span>{{ lender.attributes.high_trail_commission }}%</span>
-              </td>
-              <td class="p-2">
-                <span>{{ lender.attributes.low_trail_commission }}%</span>
-              </td>
-              <td class="p-2">
-                <span>{{ lender.attributes.balance_multiplier }}</span>
-              </td>
-              <td class="p-2">
-                <input type="checkbox" ng-model="lender.attributes.is_active" ng-true-value="true"
-                  ng-false-value="false" ng-disabled="editingRow !== lender.id">
-              </td>
-              <td class="p-2">
-                <input type="checkbox" ng-model="lender.attributes.is_hidden" ng-true-value="true"
-                  ng-false-value="false" ng-disabled="editingRow !== lender.id">
-              </td>
-              <td class="p-2">
-                <button class="flex items-center gap-1" ng-click="setEditable(lender.id)"
-                  ng-show="editingRow !== lender.id">
-                  <span>✎</span>
-                  <span>Edit</span>
-                </button>
-                <button class="flex items-center gap-1" ng-click="saveEdits(lender)" ng-hide="editingRow !== lender.id">
-                  <span>✎</span>
-                  <span>Save</span>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-  </main>
-
-</body>
-
+      </section>
+    </main>
+  </body>
 </html>
